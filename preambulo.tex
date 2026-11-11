@@ -1,0 +1,99 @@
+% ============================================================================
+% Preâmbulo: classe, pacotes e dados do trabalho
+% ============================================================================
+
+\PassOptionsToPackage{hyperfootnotes=false}{hyperref}
+\documentclass[
+    12pt,
+    openright,
+    oneside,
+    a4paper,
+    sumario=tradicional,
+    brazilian,
+    english,
+]{abntex2}
+
+% Idioma do texto: português (padrão). Para escrever em inglês, descomente a linha abaixo.
+% \def\textoemingles{}
+
+\usepackage{abntex2-UFV}
+
+% Fonte, codificação e espaçamento
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{newtxtext,newtxmath}   % Times
+\usepackage{indentfirst}
+\OnehalfSpacing
+
+% Figuras, tabelas e matemática
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{tikz}
+\usepackage{xurl}
+
+% Ambiente de definição numerado por capítulo
+\let\openbox\relax
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem{definicao}{Definição}[chapter]
+
+% Citações numéricas no padrão ABNT, com o número entre colchetes
+\usepackage[num,abnt-emphasize=bf]{abntex2cite}
+\citebrackets{[}{]}
+
+% Texto em inglês: títulos das listas, do sumário e das legendas em inglês
+\ifdefined\textoemingles
+    \addto\captionsbrazil{%
+        \def\bibname{References}%
+        \renewcommand{\figurename}{Figure}%
+        \renewcommand{\tablename}{Table}%
+        \renewcommand{\listfigurename}{List of Figures}%
+        \renewcommand{\listtablename}{List of Tables}%
+        \renewcommand{\contentsname}{Contents}%
+        \renewcommand{\chaptername}{Chapter}%
+    }
+    \addto\captionsenglish{\def\bibname{References}}
+    \AtBeginDocument{\selectlanguage{english}}
+\fi
+
+% Títulos de capítulos e seções sem fonte sans-serif
+\renewcommand{\ABNTEXchapterfont}{\rmfamily\bfseries}
+\renewcommand{\ABNTEXsectionfont}{\rmfamily\bfseries}
+\renewcommand{\ABNTEXsubsectionfont}{\rmfamily\bfseries}
+\renewcommand{\ABNTEXsubsubsectionfont}{\rmfamily\bfseries}
+
+% ----------------------------------------------------------------------------
+% Dados do trabalho
+% ----------------------------------------------------------------------------
+\titulo{\normalsize{\textbf{Título da Dissertação: Subtítulo}}}
+\autor{\normalsize{\textbf{Nome Completo do Autor}}}
+\local{\normalsize{\textbf{Florestal - Minas Gerais}}}
+\data{\normalsize{\textbf{2026}}}
+\orientador{Nome do Orientador}
+% \coorientador{Nome do Coorientador}
+\instituicao{Universidade Federal de Viçosa}
+\campus{Campus Florestal}
+\curso{Pós-graduação em Ciência da Computação}
+\preambulo{Dissertação apresentada à Universidade Federal de Viçosa, como parte das
+exigências do Programa de Pós-Graduação em Ciência da Computação, para obtenção do título
+de \textit{Magister Scientiae}.}
+
+% Metadados e cores dos links no PDF
+\makeatletter
+\hypersetup{
+    pdftitle={\@title},
+    pdfauthor={\@author},
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=blue,
+    urlcolor=blue,
+    bookmarksdepth=4,
+}
+\makeatother

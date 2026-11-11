@@ -1,0 +1,91 @@
+% ============================================================================
+% Template de dissertação/tese da UFV (abnTeX2 + abntex2-UFV)
+%
+% Duas versões a partir do mesmo fonte:
+%   main.tex       versão completa (folha de rosto, resumo, abstract...): banca
+%   deposito.tex   só o corpo, a partir das listas: arquivo anexado ao AcademicoPG
+% Veja o README.md.
+% ============================================================================
+
+% A versão de depósito é escolhida por deposito.tex, que define \DEPOSITO antes de ler este arquivo.
+\newif\ifcompleta
+\ifdefined\DEPOSITO \completafalse \else \completatrue \fi
+
+% Número impresso na primeira página do corpo na versão de depósito.
+% O AcademicoPG insere as próprias páginas pré-textuais antes do seu arquivo, e elas são
+% contadas. Meça este valor no RASCUNHO emitido pelo sistema (veja o README.md).
+\newcommand{\primeirapaginadocorpo}{20}
+
+\input{preambulo.tex}
+
+\begin{document}
+\frenchspacing
+\OnehalfSpacing
+\pretextual
+
+\ifcompleta
+    \imprimirfolhaderosto
+
+    \begin{dedicatoria}
+        \vspace*{\fill}
+        \begin{flushright}
+            \textit{Dedicatória (opcional).}
+        \end{flushright}
+    \end{dedicatoria}
+
+    \begin{agradecimentos}
+        Agradecimentos. Inclua aqui a frase de financiamento exigida pela agência, por exemplo:
+        O presente trabalho foi realizado com apoio da Coordenação de Aperfeiçoamento de
+        Pessoal de Nível Superior -- Brasil (CAPES) -- Código de Financiamento 001.
+    \end{agradecimentos}
+
+    \begin{epigrafe}
+        \vspace*{\fill}
+        \begin{flushright}
+            \textit{``Epígrafe (opcional).''}\par
+            (Autor, Obra, ano)
+        \end{flushright}
+    \end{epigrafe}
+
+    \input{resumo.tex}
+\else
+    \pagestyle{empty}
+\fi
+
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+
+\begin{siglas}
+    \item[ABNT] Associação Brasileira de Normas Técnicas
+    \item[UFV] Universidade Federal de Viçosa
+\end{siglas}
+\cleardoublepage
+
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+
+\textual
+\ifcompleta\else
+    \pagestyle{abntheadings}
+    \setcounter{page}{\primeirapaginadocorpo}
+\fi
+
+\include{capitulos/introducao}
+\include{capitulos/exemplos}
+\include{capitulos/conclusao}
+
+\postextual
+\bibliography{referencias}
+
+\begin{apendicesenv}
+    \partapendices
+    \include{capitulos/apendice}
+\end{apendicesenv}
+
+\end{document}
